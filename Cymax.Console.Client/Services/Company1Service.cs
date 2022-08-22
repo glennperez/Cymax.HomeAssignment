@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -29,14 +30,21 @@ namespace Cymax.Console.Client.Services
                                                 Encoding.UTF8,
                                                 Application.Json);
 
-            using var httpResponseMessage = await _httpClient.PostAsync(_httpClient.BaseAddress, inputJson);
-
-            httpResponseMessage.EnsureSuccessStatusCode();
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            try
             {
-                var responseJsonString = await httpResponseMessage.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<ResponseCompany1>(responseJsonString);
+                using var httpResponseMessage = await _httpClient.PostAsync(_httpClient.BaseAddress, inputJson);
+
+                httpResponseMessage.EnsureSuccessStatusCode();
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var responseJsonString = await httpResponseMessage.Content.ReadAsStringAsync();
+                    return JsonSerializer.Deserialize<ResponseCompany1>(responseJsonString);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Write($"Could not connect to company 1 - Reasone:{ex.Message}");
             }
 
             return null;

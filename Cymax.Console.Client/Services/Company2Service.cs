@@ -4,6 +4,7 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Diagnostics;
 
 namespace Cymax.Console.Client.Services
 {
@@ -27,14 +28,21 @@ namespace Cymax.Console.Client.Services
                                                 Encoding.UTF8,
                                                 Application.Json);
 
-            using var httpResponseMessage = await _httpClient.PostAsync(_httpClient.BaseAddress, inputJson);
-
-            httpResponseMessage.EnsureSuccessStatusCode();
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            try
             {
-                var responseJsonString = await httpResponseMessage.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<ResponseCompany2>(responseJsonString);
+                using var httpResponseMessage = await _httpClient.PostAsync(_httpClient.BaseAddress, inputJson);
+
+                httpResponseMessage.EnsureSuccessStatusCode();
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var responseJsonString = await httpResponseMessage.Content.ReadAsStringAsync();
+                    return JsonSerializer.Deserialize<ResponseCompany2>(responseJsonString);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Write($"Could not connect to company 2 - Reasone:{ex.Message}");
             }
 
             return null;

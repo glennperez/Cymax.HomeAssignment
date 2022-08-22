@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
+using System.Diagnostics;
 
 namespace Cymax.Console.Client.Services
 {
@@ -37,21 +38,29 @@ namespace Cymax.Console.Client.Services
                                                 Encoding.UTF8,
                                                 Application.Xml);
 
-            using var httpResponseMessage = await _httpClient.PostAsync(_httpClient.BaseAddress, inputXml);
-
-            httpResponseMessage.EnsureSuccessStatusCode();
-
-            if (httpResponseMessage.IsSuccessStatusCode)
+            try
             {
-                var serializer = new XmlSerializer(typeof(ResponseCompany3));
-                var response = await httpResponseMessage.Content.ReadAsStreamAsync();
-                return serializer.Deserialize(response) as ResponseCompany3;
+                using var httpResponseMessage = await _httpClient.PostAsync(_httpClient.BaseAddress, inputXml);
+
+                httpResponseMessage.EnsureSuccessStatusCode();
+
+                if (httpResponseMessage.IsSuccessStatusCode)
+                {
+                    var serializer = new XmlSerializer(typeof(ResponseCompany3));
+                    var response = await httpResponseMessage.Content.ReadAsStreamAsync();
+                    return serializer.Deserialize(response) as ResponseCompany3;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Write($"Could not connect to company 3 - Reasone:{ex.Message}");
             }
 
             return null;
         }
     }
 
+    [XmlRoot(ElementName = "xml")]
     public class ResponseCompany3
     {
         [XmlElement(ElementName = "quote")]

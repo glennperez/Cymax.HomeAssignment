@@ -96,8 +96,10 @@ Code Challenge that exemplifies the consumption of 3 APIs exposed by different c
 If all apis are running the result is something like this:
 
 ![alt text](https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console1.jpeg?raw=true)
+<img src="https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console1.jpeg?raw=true" alt="drawing" width="685" height="355"/>
 
 If any one is not available, the client will indicate it:
 
 ![alt text](https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console2.jpeg?raw=true)
+<img src="https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console2.jpeg?raw=true" alt="drawing" width="685" height="355"/>
 

@@ -14,13 +14,17 @@ namespace Company1.API.Controllers
         {
             _logger = logger;
         }
-
+        /// <summary>
+        /// Post method: This method simulates Business Logic about how the company calculates its offer.
+        /// </summary>
+        /// <param name="deal"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post([FromBody]Deal deal)
         {
             if (!ModelState.IsValid)
                 return new BadRequestResult();
-
+            
             return Ok(new { total = new Random().Next(7000) });
         }
     }

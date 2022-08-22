@@ -7,6 +7,9 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Cymax.Console.Client.Services
 {
+    /// <summary>
+    /// Base service with the own consuming implementation for de Typed Class.
+    /// </summary>
     public class Company1Service : IService<ResponseCompany1>
     {
         private readonly HttpClient _httpClient;
@@ -49,7 +52,7 @@ namespace Cymax.Console.Client.Services
         }
     }
 
-    public class ResponseCompany1 : CompanyRes
+    public class ResponseCompany1 : ICompanyResponse
     {
         [JsonPropertyName("total")]
         public int Deal { get; set; }

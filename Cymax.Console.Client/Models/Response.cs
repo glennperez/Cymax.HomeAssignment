@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections;
-using Cymax.Console.Client.Services;
+﻿using Cymax.Console.Client.Services;
 
 namespace Cymax.Console.Client.Models
 {
+    /// <summary>
+    /// Class utility for merge All response and manage his presentation in the console App.
+    /// </summary>
     public class Response
     {
         private ResponseCompany1? Company1 { get; set; }
         private ResponseCompany2? Company2 { get; set; }
         private ResponseCompany3? Company3 { get; set; }
 
-        private readonly List<CompanyRes> _companies;
+        private readonly List<ICompanyResponse> _companies;
 
         public KeyValuePair<string, int> BestDeal
         {
@@ -28,7 +29,7 @@ namespace Cymax.Console.Client.Models
             Company1 = company1;
             Company2 = company2;
             Company3 = company3;
-            _companies = new List<CompanyRes>();
+            _companies = new List<ICompanyResponse>();
             
             if(company1 is not null)
                 _companies.Add(company1);

@@ -16,7 +16,12 @@ namespace Company3.API.Controllers
         {
             _logger = logger;
         }
-
+        
+        /// <summary>
+        /// Post method: This method simulates Business Logic about how the company calculates its offer.
+        /// </summary>
+        /// <param name="bid"></param>
+        /// <returns></returns>
         [HttpPost]
         [Consumes("application/xml")]
         [Produces("application/xml")]
@@ -25,7 +30,7 @@ namespace Company3.API.Controllers
             if (!ModelState.IsValid)
                 return new BadRequestResult();
 
-            return Ok(new Res());
+            return Ok(new Response());
         }
     }
 }

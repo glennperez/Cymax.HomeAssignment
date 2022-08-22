@@ -4,6 +4,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace Cymax.Console.Client.Services
 {
+    /// <summary>
+    /// Orchestrator class that perform in Parallel al APIs Calls for better performance management.
+    /// </summary>
     public class OrchestratorService
     {
         private readonly Company1Service _company1Service;

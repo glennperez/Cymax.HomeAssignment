@@ -1,14 +1,14 @@
-﻿using System;
-using Cymax.Console.Client.Models;
+﻿using Cymax.Console.Client.Models;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 using System.Diagnostics;
 
 namespace Cymax.Console.Client.Services
 {
+    /// <summary>
+    /// Base service with the own consuming implementation for de Typed Class.
+    /// </summary>
     public class Company3Service : IService<ResponseCompany3>
     {
         private readonly HttpClient _httpClient;
@@ -61,7 +61,7 @@ namespace Cymax.Console.Client.Services
     }
 
     [XmlRoot(ElementName = "xml")]
-    public class ResponseCompany3 : CompanyRes
+    public class ResponseCompany3 : ICompanyResponse
     {
         [XmlElement(ElementName = "quote")]
         public int Deal { get; set; }

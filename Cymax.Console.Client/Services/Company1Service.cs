@@ -10,7 +10,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Cymax.Console.Client.Services
 {
-    public class Company1Service
+    public class Company1Service : IService<ResponseCompany1>
     {
         private readonly HttpClient _httpClient;
 
@@ -20,13 +20,14 @@ namespace Cymax.Console.Client.Services
             _httpClient.BaseAddress = new Uri("http://localhost:5161/deals");
         }
 
-        public async Task<ResponseCompany1> PostDeals(InputData input)
+        public async Task<ResponseCompany1> PostDeal(Request input)
         {
-            var inputJson = new StringContent(JsonSerializer.Serialize( new {
-                                                        contactAddress = input.SourceAddress,
-                                                        warehouseAddress = input.DestinationAddress,
-                                                        packageDimensions = input.CartonDimensions
-                                                    }),
+            var inputJson = new StringContent(JsonSerializer.Serialize(new
+            {
+                contactAddress = input.SourceAddress,
+                warehouseAddress = input.DestinationAddress,
+                packageDimensions = input.CartonDimensions
+            }),
                                                 Encoding.UTF8,
                                                 Application.Json);
 
@@ -55,6 +56,8 @@ namespace Cymax.Console.Client.Services
     {
         [JsonPropertyName("total")]
         public int Deal { get; set; }
+        private string companyName = "Company1";
+        public string CompanyName { get => companyName; set { companyName = value; } }
     }
 }
 

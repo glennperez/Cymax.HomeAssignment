@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Cymax.Console.Client.Services
 {
-    public class Company2Service
+    public class Company2Service : IService<ResponseCompany2>
     {
         private readonly HttpClient _httpClient;
 
@@ -18,13 +18,14 @@ namespace Cymax.Console.Client.Services
             _httpClient.BaseAddress = new Uri("http://localhost:5039/offers");
         }
 
-        public async Task<ResponseCompany2> PostDeals(InputData input)
+        public async Task<ResponseCompany2> PostDeal(Request input)
         {
-            var inputJson = new StringContent(JsonSerializer.Serialize( new {
-                                                        consignee = input.SourceAddress,
-                                                        consignor = input.DestinationAddress,
-                                                        cartons = input.CartonDimensions
-                                                    }),
+            var inputJson = new StringContent(JsonSerializer.Serialize(new
+            {
+                consignee = input.SourceAddress,
+                consignor = input.DestinationAddress,
+                cartons = input.CartonDimensions
+            }),
                                                 Encoding.UTF8,
                                                 Application.Json);
 
@@ -53,6 +54,8 @@ namespace Cymax.Console.Client.Services
     {
         [JsonPropertyName("amount")]
         public int Deal { get; set; }
+        private string companyName = "Company2";
+        public string CompanyName { get => companyName; set { companyName = value; } }
     }
 
 }

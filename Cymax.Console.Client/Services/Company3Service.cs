@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace Cymax.Console.Client.Services
 {
-    public class Company3Service
+    public class Company3Service : IService<ResponseCompany3>
     {
         private readonly HttpClient _httpClient;
 
@@ -20,14 +20,14 @@ namespace Cymax.Console.Client.Services
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/xml");
         }
 
-        public async Task<ResponseCompany3> PostDeals(InputData input)
+        public async Task<ResponseCompany3> PostDeal(Request input)
         {
             StringBuilder request = new($"<?xml version='1.0' encoding='UTF-8'?>\n" +
-                                        $"<root>\n<source>{input.SourceAddress}</source>\n" +
-                                        $"<destination>{input.DestinationAddress}</destination>\n" +
-                                        $"<packages>\n");
+                                         $"<root>\n<source>{input.SourceAddress}</source>\n" +
+                                         $"<destination>{input.DestinationAddress}</destination>\n" +
+                                         $"<packages>\n");
 
-            foreach (int pkg  in input.CartonDimensions)
+            foreach (int pkg in input.CartonDimensions)
             {
                 request.Append($"<package>{pkg}</package>\n");
             }
@@ -65,6 +65,8 @@ namespace Cymax.Console.Client.Services
     {
         [XmlElement(ElementName = "quote")]
         public int Deal { get; set; }
+        private string companyName = "Company3";
+        public string CompanyName { get => companyName; set { companyName = value; } }
     }
 }
 

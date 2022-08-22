@@ -5,25 +5,24 @@ using Microsoft.Extensions.Hosting;
 
 namespace Cymax.Console.Client.Services
 {
-    public class OrchestorService
+    public class OrchestratorService
     {
         public readonly Company1Service _company1Service;
         public readonly Company2Service _company2Service;
         public readonly Company3Service _company3Service;
 
-        public OrchestorService(IHost host)
+        public OrchestratorService(IHost host)
         {
             _company1Service = host.Services.GetRequiredService<Company1Service>();
             _company2Service = host.Services.GetRequiredService<Company2Service>();
             _company3Service = host.Services.GetRequiredService<Company3Service>();
         }
 
-
-        public async Task<Response> GetBestDealsFromSuplyersParallel(InputData data)
+        public async Task<Response> GetBestDealsFromSuplyersParallel(Request data)
         {
-            var postDealsCompany1Task = _company1Service.PostDeals(data);
-            var postDealsCompany2Task = _company2Service.PostDeals(data);
-            var postDealsCompany3Task = _company3Service.PostDeals(data);
+            var postDealsCompany1Task = _company1Service.PostDeal(data);
+            var postDealsCompany2Task = _company2Service.PostDeal(data);
+            var postDealsCompany3Task = _company3Service.PostDeal(data);
 
             await Task.WhenAll(postDealsCompany1Task, postDealsCompany2Task, postDealsCompany3Task);
 

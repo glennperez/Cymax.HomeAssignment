@@ -94,7 +94,10 @@ Code Challenge that exemplifies the consumption of 3 APIs exposed by different c
 - 3- Run `Cymax.Console.Client` project.
 
 If all apis are running the result is something like this:
+
 ![alt text](https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console1.jpeg?raw=true)
+
 If any one is not available, the client will indicate it:
+
 ![alt text](https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console2.jpeg?raw=true)
 

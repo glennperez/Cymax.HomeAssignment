@@ -27,8 +27,14 @@ internal class Program
 
         var orchestor = new OrchestorService(host);
         var result = await orchestor.GetBestDealsFromSuplyersParallel(request);
+        var bestDeal = result.GetBestDeal().FirstOrDefault();
 
-        Console.WriteLine($"Best deal from 3 Suplyers is: {result.GetBestSeller()}");
+        foreach (var item in result.GetAllSuplyers())
+        {
+            Console.WriteLine($"Suplyer: {item.Key}, Offert: {item.Value}");
+        }
+
+        Console.WriteLine($"Best deal is: {bestDeal.Value} and is from: {bestDeal.Key}");
        
     }
 }

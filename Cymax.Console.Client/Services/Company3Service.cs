@@ -65,8 +65,7 @@ namespace Cymax.Console.Client.Services
     {
         [XmlElement(ElementName = "quote")]
         public int Deal { get; set; }
-        private string companyName = "Company3";
-        public string CompanyName { get => companyName; set { companyName = value; } }
+        public string CompanyName { get; set; } = "Company3";
     }
 }
 

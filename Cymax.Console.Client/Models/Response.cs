@@ -29,7 +29,7 @@ namespace Cymax.Console.Client.Models
             Company3 = company3;
         }
 
-        public Dictionary<string,int> PrintAllSuplyers()
+        public Dictionary<string,int> PrintAllSuppliers()
         {
             return new Dictionary<string, int>()
             {

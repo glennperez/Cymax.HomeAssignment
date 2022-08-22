@@ -54,8 +54,7 @@ namespace Cymax.Console.Client.Services
     {
         [JsonPropertyName("amount")]
         public int Deal { get; set; }
-        private string companyName = "Company2";
-        public string CompanyName { get => companyName; set { companyName = value; } }
+        public string CompanyName { get; set; } = "Company2";
     }
 
 }

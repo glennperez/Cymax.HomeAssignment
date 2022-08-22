@@ -2,21 +2,22 @@
 using Cymax.Console.Client.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+
+namespace Cymax.Console.Client;
 
 internal class Program
 {
     private static async Task Main(string[] args)
     {
         var host = new HostBuilder()
-                       .ConfigureServices(services =>
-                       {
-                           services.AddHttpClient();
-                           services.AddTransient<Company1Service>();
-                           services.AddTransient<Company2Service>();
-                           services.AddTransient<Company3Service>();
-                       })
-                       .Build();
+            .ConfigureServices(services =>
+            {
+                services.AddHttpClient();
+                services.AddTransient<Company1Service>();
+                services.AddTransient<Company2Service>();
+                services.AddTransient<Company3Service>();
+            })
+            .Build();
 
         var request = new Request()
         {
@@ -25,18 +26,15 @@ internal class Program
             CartonDimensions = new int[3] { 14, 25, 37 }
         };
 
-        var orchestor = new OrchestratorService(host);
-        var result = await orchestor.GetBestDealsFromSuplyersParallel(request);
+        var orchestrator = new OrchestratorService(host);
+        var result = await orchestrator.GetBestDealsFromSuppliersParallel(request);
 
-        Console.WriteLine($"Best deal is: {result.BestDeal.Value} and is from: {result.BestDeal.Key}\n");
-
-        Console.WriteLine($"Consulted Suppliers:");
-        foreach (var item in result.PrintAllSuplyers())
+        System.Console.WriteLine($"Best deal is: {result.BestDeal.Value} and is from: {result.BestDeal.Key}\n");
+        System.Console.WriteLine("Consulted Suppliers:");
+        foreach (var item in result.PrintAllSuppliers())
         {
-            Console.WriteLine($"{item.Key} Offert: {item.Value}");
+            System.Console.WriteLine($"{item.Key} offert: {item.Value}");
         }
-
         
-       
     }
 }

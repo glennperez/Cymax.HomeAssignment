@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Net.Http.Json;
+﻿using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -56,8 +53,7 @@ namespace Cymax.Console.Client.Services
     {
         [JsonPropertyName("total")]
         public int Deal { get; set; }
-        private string companyName = "Company1";
-        public string CompanyName { get => companyName; set { companyName = value; } }
+        public string CompanyName { get; set; } = "Company1";
     }
 }
 

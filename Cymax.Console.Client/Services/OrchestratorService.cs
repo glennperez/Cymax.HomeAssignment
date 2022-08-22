@@ -1,5 +1,4 @@
-﻿using System;
-using Cymax.Console.Client.Models;
+﻿using Cymax.Console.Client.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -7,9 +6,9 @@ namespace Cymax.Console.Client.Services
 {
     public class OrchestratorService
     {
-        public readonly Company1Service _company1Service;
-        public readonly Company2Service _company2Service;
-        public readonly Company3Service _company3Service;
+        private readonly Company1Service _company1Service;
+        private readonly Company2Service _company2Service;
+        private readonly Company3Service _company3Service;
 
         public OrchestratorService(IHost host)
         {
@@ -18,7 +17,7 @@ namespace Cymax.Console.Client.Services
             _company3Service = host.Services.GetRequiredService<Company3Service>();
         }
 
-        public async Task<Response> GetBestDealsFromSuplyersParallel(Request data)
+        public async Task<Response> GetBestDealsFromSuppliersParallel(Request data)
         {
             var postDealsCompany1Task = _company1Service.PostDeal(data);
             var postDealsCompany2Task = _company2Service.PostDeal(data);

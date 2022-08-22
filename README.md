@@ -97,9 +97,7 @@ If all apis are running the result is something like this:
 
 ![alt text](https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console1.jpeg?raw=true)
 
-If any one is not available, the client will indicate it: 
+If any one is not available, the client will indicate it:
 
 ![alt text](https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console2.jpeg?raw=true)
-
-**Note! at least one of the APIs must be running.**
 

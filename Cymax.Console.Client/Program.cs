@@ -33,7 +33,7 @@ internal class Program
         System.Console.WriteLine("Consulted Suppliers:");
         foreach (var item in result.PrintAllSuppliers())
         {
-            System.Console.WriteLine($"{item.Key} offert: {item.Value}");
+            System.Console.WriteLine($"{item.Key}: {item.Value}");
         }
         
     }

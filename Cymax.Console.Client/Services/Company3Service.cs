@@ -20,7 +20,7 @@ namespace Cymax.Console.Client.Services
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/xml");
         }
 
-        public async Task<ResponseCompany3> PostDeal(Request input)
+        public async Task<ResponseCompany3?> PostDeal(Request input)
         {
             StringBuilder request = new($"<?xml version='1.0' encoding='UTF-8'?>\n" +
                                          $"<root>\n<source>{input.SourceAddress}</source>\n" +
@@ -61,7 +61,7 @@ namespace Cymax.Console.Client.Services
     }
 
     [XmlRoot(ElementName = "xml")]
-    public class ResponseCompany3
+    public class ResponseCompany3 : CompanyRes
     {
         [XmlElement(ElementName = "quote")]
         public int Deal { get; set; }

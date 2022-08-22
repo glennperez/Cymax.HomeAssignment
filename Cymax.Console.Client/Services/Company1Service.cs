@@ -17,7 +17,7 @@ namespace Cymax.Console.Client.Services
             _httpClient.BaseAddress = new Uri("http://localhost:5161/deals");
         }
 
-        public async Task<ResponseCompany1> PostDeal(Request input)
+        public async Task<ResponseCompany1?> PostDeal(Request input)
         {
             var inputJson = new StringContent(JsonSerializer.Serialize(new
             {
@@ -49,7 +49,7 @@ namespace Cymax.Console.Client.Services
         }
     }
 
-    public class ResponseCompany1
+    public class ResponseCompany1 : CompanyRes
     {
         [JsonPropertyName("total")]
         public int Deal { get; set; }

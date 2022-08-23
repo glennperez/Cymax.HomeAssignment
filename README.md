@@ -95,7 +95,7 @@ Code Challenge that exemplifies the consumption of 3 APIs exposed by different c
 
 If all apis are running the result is something like this:
 
-<img src="https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console1.jpeg?raw=true" alt="drawing" width="685" height="355"/>
+<img src="https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console1.jpeg?raw=true" alt="drawing" width="685" height="340"/>
 
 If any one is not available, the client will indicate it: **(note: at least 1 api must be running)**
 

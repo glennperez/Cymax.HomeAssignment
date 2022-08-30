@@ -18,7 +18,7 @@ namespace Cymax.Console.Client.Models
             get
             {
                 var supplier = _companies.MinBy(c => c.Deal);
-                return new KeyValuePair<string, int>(supplier.CompanyName, supplier.Deal);
+                return supplier is not null ? new KeyValuePair<string, int>(supplier.CompanyName, supplier.Deal) : new KeyValuePair<string, int>("", 0);
             }
         }
 

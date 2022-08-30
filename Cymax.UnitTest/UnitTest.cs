@@ -120,17 +120,7 @@ public class UnitTest
     [Fact]
     public async void Create_Orchestrator_And_Call_Services()
     {
-        var host = new HostBuilder()
-            .ConfigureServices(services =>
-            {
-                services.AddHttpClient();
-                services.AddTransient<Company1Service>();
-                services.AddTransient<Company2Service>();
-                services.AddTransient<Company3Service>();
-            })
-            .Build();
-
-        var orchestrator = new OrchestratorService(host);
+        var orchestrator = new OrchestratorService();
         var result = await orchestrator.GetBestDealsFromSuppliersParallel(_request);
         
         Assert.True(result.BestDeal.Value> 0);

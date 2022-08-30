@@ -13,8 +13,18 @@ namespace Cymax.Console.Client.Services
         private readonly Company2Service _company2Service;
         private readonly Company3Service _company3Service;
 
-        public OrchestratorService(IHost host)
+        public OrchestratorService()
         {
+            var host = new HostBuilder()
+                .ConfigureServices(services =>
+                {
+                    services.AddHttpClient();
+                    services.AddTransient<Company1Service>();
+                    services.AddTransient<Company2Service>();
+                    services.AddTransient<Company3Service>();
+                })
+                .Build();
+            
             _company1Service = host.Services.GetRequiredService<Company1Service>();
             _company2Service = host.Services.GetRequiredService<Company2Service>();
             _company3Service = host.Services.GetRequiredService<Company3Service>();

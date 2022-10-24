@@ -97,7 +97,7 @@ If all apis are running the result is something like this:
 
 <img src="https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console1.jpeg?raw=true" alt="drawing" width="685" height="340"/>
 
-If any one is not available, the client will indicate it: **(note: at least 1 api must be running)**
+If any one is not available, the client will indicate it:
 
 ![alt text](https://github.com/glennperez/Cymax.HomeAssignment/blob/main/console2.jpeg?raw=true)
 
